@@ -7,7 +7,6 @@ import YouTube, {
 
 function App() {
   const [time, setTime] = useState<Date>(new Date());
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [dialog, setDialog] = useState<boolean>(false);
   const [play, setPlay] = useState<boolean>(false);
   const [YTPlayer, setYTPlayer] = useState<YouTubePlayer>();
@@ -73,10 +72,9 @@ function App() {
               onClick={() => {
                 setDialog(false);
                 setTimeout(() => {
-                  videoRef.current?.play();
                   YTPlayer?.playVideo();
-                }, new Date("2022-12-31T20:34:30").getTime() - new Date().getTime() - 129000);
-                setPlay(true);
+                  setPlay(true);
+                }, new Date("2022-12-31T20:57:00").getTime() - new Date().getTime() - 129800);
               }}
             >
               はい
