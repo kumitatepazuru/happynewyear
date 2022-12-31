@@ -1,5 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import kickback from "./assets/kickback.webm";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
   const [time, setTime] = useState<Date>(new Date());
@@ -17,21 +16,18 @@ function App() {
   return (
     <>
       <div className="w-screen h-screen flex justify-center items-center flex-col">
-        {play && (
-          <video
-            src={kickback}
-            ref={videoRef}
-            playsInline
-          />
-        )}
+        {play && <video src="https://storage.cloud.google.com/inudev-hotdog/%E7%B1%B3%E6%B4%A5%E7%8E%84%E5%B8%AB%20Kenshi%20Yonezu%20-%20KICKBACK%20%5BM2cckDmNLMI%5D.webm" ref={videoRef} playsInline />}
         <span
           className={
             "countdown font-mono sm:text-8xl text-5xl absolute " +
             (play ? "text-white" : "")
           }
         >
+          {/* @ts-ignore */}
           <span style={{ "--value": time.getHours() }}></span>:
+          {/* @ts-ignore */}
           <span style={{ "--value": time.getMinutes() }}></span>:
+          {/* @ts-ignore */}
           <span style={{ "--value": time.getSeconds() }}></span>
         </span>
       </div>
