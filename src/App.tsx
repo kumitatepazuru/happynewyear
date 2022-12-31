@@ -1,10 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import YouTube, {
+  YouTubeEvent,
+  YouTubePlayer,
+  YouTubeProps,
+} from "react-youtube";
 
 function App() {
   const [time, setTime] = useState<Date>(new Date());
   const videoRef = useRef<HTMLVideoElement>(null);
   const [dialog, setDialog] = useState<boolean>(false);
   const [play, setPlay] = useState<boolean>(false);
+  const [YTPlayer, setYTPlayer] = useState<YouTubePlayer>();
 
   useEffect(() => {
     setDialog(true);
@@ -13,10 +19,27 @@ function App() {
     }, 10);
   }, []);
 
+  const makeYTPlayer = (e: YouTubeEvent<any>) => {
+    setYTPlayer(e.target);
+  };
+
+  const opts: YouTubeProps["opts"] = {
+    width: "100%",
+    height: "100%",
+    playerVars: {
+      controls: 0,
+    },
+  };
+
   return (
     <>
       <div className="w-screen h-screen flex justify-center items-center flex-col">
-        {play && <video src="https://storage.cloud.google.com/inudev-hotdog/%E7%B1%B3%E6%B4%A5%E7%8E%84%E5%B8%AB%20Kenshi%20Yonezu%20-%20KICKBACK%20%5BM2cckDmNLMI%5D.webm" ref={videoRef} playsInline />}
+        <YouTube
+          videoId="M2cckDmNLMI"
+          onReady={makeYTPlayer}
+          opts={opts}
+          className="w-screen h-screen"
+        />
         <span
           className={
             "countdown font-mono sm:text-8xl text-5xl absolute " +
@@ -51,7 +74,8 @@ function App() {
                 setDialog(false);
                 setTimeout(() => {
                   videoRef.current?.play();
-                }, new Date("2022-12-31T20:10:30").getTime() - new Date().getTime() - 127500);
+                  YTPlayer?.playVideo();
+                }, new Date("2022-12-31T20:34:30").getTime() - new Date().getTime() - 129000);
                 setPlay(true);
               }}
             >
