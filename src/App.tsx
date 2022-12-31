@@ -74,7 +74,7 @@ function App() {
                 setTimeout(() => {
                   YTPlayer?.playVideo();
                   setPlay(true);
-                }, new Date("2022-12-31T20:57:00").getTime() - new Date().getTime() - 129800);
+                }, new Date("2023-01-01T00:00:00").getTime() - new Date().getTime() - 129800);
               }}
             >
               はい
